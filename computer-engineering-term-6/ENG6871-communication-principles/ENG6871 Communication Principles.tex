@@ -1,0 +1,405 @@
+\documentclass[11pt]{article}
+    
+    \usepackage{caption}
+    \usepackage{graphicx}
+    \usepackage{mathtools}
+    \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+    \usepackage{bookmark}
+    \usepackage{amsmath}
+    \graphicspath{ {img/} }
+    \setlength{\parindent}{0pt}
+    \DeclareCaptionType{equ}[][]
+    \usepackage[svgnames]{xcolor}
+    \newcommand*{\plogo}{\fbox{$\mathcal{BM}$}}
+    
+    \usepackage{PTSerif}
+    
+    \begin{document} 
+        
+    \begin{titlepage}
+    
+        \raggedleft
+        
+        \vspace*{\baselineskip}
+        
+        {\Large Bryan Melanson}
+        
+        \vspace*{0.167\textheight}
+        
+        \textbf{\LARGE How to Not Fail}\\[\baselineskip]
+        
+        {\textcolor{Red}{\Huge Communication Principles}}\\[\baselineskip]
+        
+        {\Large \textit{While never going to class}}
+        
+        \vfill
+        
+        {\large Computer Engineering 2020 ~~\plogo}
+        
+        \vspace*{3\baselineskip}
+    
+    \end{titlepage}
+
+    \pagebreak
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \pdfbookmark[section]{\contentsname}{toc}
+    
+    \tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+\section{Signals and Signal Space}
+
+\subsection{Signal Strength}
+
+\subsubsection{Power}
+
+\textbf{Signal Energy} $E_g$ is the energy that the voltage of $g(t)$ dissipates on a resistor. From circuits, we know that $E = V^2/R$, so for a time based signal with no theoretical $R$:
+
+$$E_g = \int^{\infty}_{-\infty}|g(t)|^2 dt$$
+
+When dealing with complex signals:
+
+$$E_g = \int^{\infty}_{-\infty}g(t)g^*(t) dt$$
+
+Where the orthogonal signal $g^*(t)$ indicates that all $j$ units in $g(t)$ are negative.
+
+\subsubsection{Power}
+
+\textbf{Signal Power} is the measure of a signal where signal energy isn't finite. For a signal that doesn't go to zero as $t \rightarrow \infty$, a time average of the energy $P_g$ can be taken over a period $T$:
+
+$$P_g = \lim_{t\to\infty} \frac{1}{T}\int_{T/2}^{-T/2} |g(t)|^2 dt$$
+
+Similar to energy signals, when $g(t)$ is a complex signal:
+
+$$P_g = \lim_{t\to\infty} \frac{1}{T}\int_{T/2}^{-T/2} g(t)g^*(t) dt$$
+
+
+\hfill \break 
+The square of $P_g$ is the \textbf{Root Mean Square} of value $g(t)$.
+
+\subsubsection{Energy and Power Signals}
+
+A signal with finite energy is an \textbf{Energy Signal}, and an signal with finite power is a \textbf{Power Signal}. In other terms, if $E_g < \infty$, or $0 < P_g < \infty$.
+
+\subsection{Important Signals}
+\subsubsection{Unit Impulse Signal}
+
+$$\delta(t) = 0, t \neq 0$$
+$$\int^{\infty}_{-\infty}\delta(t)dt = 1$$
+\hfill \break 
+A rectangular pulse of width $\epsilon$ and height $1/\epsilon$, the \textbf{Unit Impulse} is 0 everywhere but at $t = 0$.
+
+$$\phi(t)\delta(t) = \phi(0)\delta(t)$$
+$$\phi(t)\delta(t - T) = \phi(T)\delta(t - T)$$
+
+\hfill \break
+These equations follow from the understanding that $\delta(t)$ is the only point where the impulse has a value, and likewise when shifted $T$ units. The resulting equation will only be equal to the function $\phi$ at this specific point, multiplied by $\delta$ at this point.
+
+\textbf{Sampling Property}
+
+From the above, it can be seen that:
+
+$$\int_{-\infty}^{\infty}\phi(t)\delta(t - T) = \phi(T)\int_{-\infty}^{\infty}\delta(t - T) dt = \phi(T)$$
+
+\hfill \break
+The $\phi(T)$ value can be shifted out of the $dt$ integration as a constant, leaving us with the result. This is known as the \textbf{Sampling} or \textbf{Sifting Property}. 
+
+\subsubsection{Unit Step Function}
+
+$$u(t) = \begin{cases}
+    0, \quad t < 0 \\
+    1, \quad t \geq 0 
+\end{cases}1, t \geq 0$$
+
+\hfill \break
+$$\int_{-\infty}^{t}\delta(\tau)d\tau =  \begin{cases}
+    0,\quad  t < 0 \\
+    1, \quad t \geq 0
+\end{cases} = u(t)$$
+
+This comes from the knowledge that the area under the impulse function is 1, so any scope of area that encompasses its $t$ will also be equal to 1. 
+
+$$ \frac{du}{dt} = \delta(t)$$
+
+\subsubsection{Exponential Function $e^{{\alpha}t}$}
+When $\alpha$ is a pure imaginary signal ($\alpha = j\omega_0 t)$ then exponential signal $e^{{\alpha}t}$ is a unit signal whose period $T_0 = \frac{2\pi}{\omega_0}$ \\
+
+$\omega_0$ is the frequency in radians, where $\omega_0t$ is a measurement over the span of time $t$ (frequency $\cdot$ time). As the unit exponential, the magnitude of $e^{{j\omega}t}$ is $\abs{\text{cos}\omega_0t + j\text{sin}\omega_0t}$ = 1
+
+\subsubsection{Rectangle Signal}
+A \textbf{Rectangle Signal} $rect(\frac{t}{T})$ is a unit signal of width $T$ which is centered at $t$. $rect(\frac{t}{T})$ can be defined as:
+
+$$rect(\frac{t}{T}) = \begin{cases}
+    1,\quad  -\frac{T}{2} \leq t \leq \frac{T}{2}\\
+    0, \quad \text{else}
+\end{cases}$$
+
+\subsubsection{Triangle Signal}
+A \textbf{Triangle Signal} $\Delta(\frac{t}{\tau}$) is defined as:
+
+$$\Delta(\frac{t}{\tau}) = \begin{cases}
+    t,   \quad   -\frac{\tau}{2} \leq t \leq 0 \\
+    -t,   \quad  0 \leq t \leq \frac{\tau}{2} \\
+\end{cases}$$
+
+\subsection{Signal Operations}
+\subsubsection{Time Shifting}
+
+When shifting a signal $g(t) \rightarrow g(t - T)$, it should be considered that at every point in $t$, the value of $g(t)$ will be the same as as what it would be at time $t - T$. In other words, a signal will be shifted to the right. For $t + T$, a signal will appear shifted to the left.
+\subsubsection{Time Scaling}
+
+When scaling a signal $g(t) \Rightarrow g(\alpha t)$ it should be considered that the value of the new signal will be whatever the signal was originally at time $\alpha t$. Therefore, when $\alpha > 1$, a signal will appear compressed by a value $\alpha$ about its point of origin. When $\alpha < 1$, it will appear lengthened. This will be centered at the point $t$, or a shifted time value.
+\subsubsection{Time Reversal}
+This will be the same as scaling, only the signal is inverted at its time of origin.
+\subsubsection{Complex Operation}
+When performing an operation which involves shifting and scaling, the function should be converted to the form $g(t)$ by removing the scaling from the signal equation. So for $g(\alpha t + T)$, the function will be $g(\alpha(t + \frac{T}{\alpha}))$. This will be the original signal $g(t)$ scaled by $\alpha$ and shifted by $\frac{1}{\alpha}$. Obey the order of operations by scaling before shifting.
+
+\subsection{System Characterization}
+
+$$x(t) \Rightarrow S \Rightarrow y(t) = S[x(t)] $$ 
+
+\textbf{Linear} \quad $S[ax_1(t) + bx_2(t)] = aS[x_1(t)] + bS[x_2(t)] = ay_1(t) = by_2(t)$ \\
+\textbf{Time-Invariant}  \quad $S[x_1(t-t_0) = y(t-t_0)])$
+
+\section{Analysis of Signals}
+
+\subsection{Fourier Series}
+For exponential signal $e^{jw_0t}$ for frequency $w_0$, some properties are:
+
+\begin{itemize}
+    \item Fundamental period $T_0 = \frac{2\pi}{w_0}$
+    \item $\abs{e^{j\omega_0t}}$ = 1
+    \item $e^{jw_0t}$ = cos($\omega_0t$) + $j$sin($\omega_0t$)
+    \item There are a set of harmonically related $\phi_k(t) = e^{jk\omega_0t}$. This $\phi_k(t)$ is orthogonal, so that
+\end{itemize}
+
+$$ \int_{T_0}\phi_n(t)\phi^*_m(t)dt = \int_{T_0}e^{jw_0t}e^{-jmw_0t}dt = \begin{cases}
+    T_0,\quad n = m \\
+    0, \quad n \neq m
+\end{cases}$$
+
+When the $m$ and $n$ values are equal, the value of $e^{jw_0t(n-m)}$ will be 1 - otherwise, it will become a combination of sin and cos signals, which sum to 0. \\ 
+
+Orthgonality can be defined as:
+
+$$\int^{t_2}_{t_1}x_1(t)x^*_2(t)dt = 0 \quad \text{or} \quad \int^{t_2}_{t_1}x^*_1(t)x_2(t)dt = 0$$
+\hfill \break
+When the signals are real, this can be generalized as:
+
+$$\int^{t_2}_{t_1}x_1(t)g(t)dt = 0$$
+
+\subsubsection{Exponential Fourier Series}
+Using these exponential signals, a signal $g(t)$ be be represented using a summation:
+
+$$g(t) = \sum_{n=-\infty}^{\infty}D_ne^{jn\omega_0t}$$
+
+$D_n$ is the \textbf{Fourier Series coefficients}
+
+$$D_n = \frac{1}{T_0}\int_{T_0}g(t)e^{-jn\omega_0t}dt$$
+
+So that:
+
+$$D_n = \frac{1}{T_0}\int_{T_0}\sum_{n=-\infty}^{\infty}D_ne^{jn\omega_0t}e^{-jn\omega_0t}dt$$
+\hfill \break
+For orthogonal signals as defined above, this will sum to $D_n$.
+\\ \\
+\textbf{Note}: If $g(t)$ is real, $D_{-n} = D^*_n$
+\subsubsection{Parseval's Theorem}
+
+The power of a periodic signal g(t) is:
+
+$$P_g = \sum^\infty_{n=-\infty}\abs{D_n}^2$$
+\subsubsection{Trigonometric Fourier Series}
+If the periodic $g(t)$ is \textbf{real}, we can represent it using the trigonometric FS:
+
+$$g(t) = a_0 + \sum_{n=1}^{\infty} a_n\text{cos}(n\omega_0t) + \sum_{n=-1}^{\infty} b_n\text{sin}(n\omega_0t)$$\\
+\\
+$a_0 = \frac{1}{T_0}\int_{T_0}g(t)dt$\\
+$a_n = \frac{2}{T_0}\int_{T_0}g(t)\text{cos}(n\omega_0t)dt$\\
+$b_n = \frac{2}{T_0}\int_{T_0}g(t)\text{sin}(n\omega_0t)dt$\\
+
+The power of the trigonometric FS can also be given by Parseval's Theorem 
+
+$$P_g = a_0^2 + \frac{1}{2}\sum_{n=1}^{\infty}a^2_n + \frac{1}{2}\sum_{n=1}^{\infty}b^2_n$$
+\hfill \break
+Each exponential signal can be broken down into sin and cos elements, so they are averaged for each summation to give the whole at each element $n$.
+
+\subsubsection{Compact Trigonometric Fourier Series}
+Once a signal $g(t)$ is represented as a trigonometric FS, it can be reduced into a compact form
+
+$$g(t) = c_0 + \sum_{n=1}^{\infty}c_n\text{cos}(n\omega_0t + \theta_n)$$
+
+$c_0 = a_0$ \\ \\
+$c_n = \sqrt{a_n^2 + b_n^2}$ \\ \\
+$\theta_n = \text{tan}^{-1}(\frac{-b_n}{a_n})$
+
+$$P_g = c_0^2 + \frac{1}{2}\sum_{n=1}^{\infty}c^2_n$$
+
+\subsubsection{Comparison of Trig Fourier Series}
+
+\begin{tabular}{l l}
+ $D_0 = c_0$ & $D_0 = c_0$ \\
+ $D_n = \frac{c_n}{2}e^{j\theta n}$ & $\abs{D_n} = \frac{c_n}{2}. \quad \angle D_n = \theta_n$ \\
+ $D_{-n} = \frac{c_n}{2}e^{-j\theta n}$ & $\abs{D_{-n}} = \frac{c_n}{2}, \quad \angle D_{-n} = -\theta_n$
+\end{tabular}
+\\ \\ \\
+\begin{tabular} {| l | c | c | c |}
+& g(t) & components & Fourier Spectrum \\
+Exp FS & periodic $\begin{cases}
+    \text{real} \\ 
+    \text{complex}
+\end{cases}$ & $e^{jn\omega_0t}$ & double sided $\begin{cases}
+    \abs{D_n} = \omega \\
+    \angle{D_n} = \omega 
+\end{cases} $\\
+Trig FS & real \& periodic & $\begin{cases}
+    \text{cos}(n\omega_0t)\\
+    \text{sin}(n\omega_0t)
+\end{cases}$ & $c_n = \omega$ (single sided) \\
+Compact & real \& periodic & $\text{cos}(n\omega_0t + \theta_n)$ & $\theta_n = \omega$ (single sided)
+\end{tabular}
+
+\subsection{Fourier Transform}
+
+\textbf{Fourier Transform} is used to represent finite energy signals where Fourier Series was used to represent periodic power signals.
+
+$$G(\omega) = \int_\infty^\infty g(t)e^{-jn\omega_0t}$$
+$$g(t) = \frac{1}{2\pi}\int_\infty^\infty G(\omega)e^{jn\omega_0t}$$ 
+\hfill \break
+\textbf{Note:} This is identical to the Fourier Series coefficient method for periodic signal $e^{jn\omega_0t}$ with period $T_0$ = 2$\pi$ 
+
+\subsubsection{Properties of Fourier Transform}
+
+\textbf{Linearity} 
+\hfill \break \par $\quad$ If $G_1$($\omega$) $\xRightarrow{F}$ $g_1(t)$, and $G_2$($\omega$) $\xRightarrow{F}$ $g_2(t)$ \par 
+\quad $ag_1(t) + bg_2(t) \xRightarrow{F} aG_1(\omega) + bG_2(\omega)$ \\ \\
+\textbf{Time-Shifting} 
+\hfill \break \par $\quad$ If $g(t)$ $\xRightarrow{F}$ $G(\omega)$ 
+\par \quad $g(t-t_0) \xRightarrow{F} e^{-j\omega t_0}G(\omega)$ \\ \\ 
+\textbf{Frequency-Shifting} 
+\hfill \break \par $\quad$ If $g(t)$ $\xRightarrow{F}$ $G(\omega)$ 
+\par \quad $e^{j\omega_0t} g(t)$ $\xRightarrow{F} G(\omega - \omega_0)$  \\ \\
+\textbf{Mixing with Sinusoids} 
+\hfill \break \par $\quad$ 
+If $g(t) \xRightarrow{F} G(\omega)$
+\par \quad
+$g(t)\text{cos}\omega_0t \xRightarrow{F} \frac{1}{2}G(\omega - \omega_0) + \frac{1}{2}G(\omega + \omega_0)$
+\par \quad
+Similarly, $g(t)\text{sing}\omega_0t \xRightarrow{F} \frac{1}{2j}G(\omega - \omega_0) + \frac{1}{2j}G(\omega + \omega_0)$ 
+\\ \\
+\textbf{Convolution}
+\hfill \break \par $\quad$ 
+$g_1(t) * g_2(t) \xRightarrow{F} G_1(\omega)G_2(\omega)$
+\\ \\
+\textbf{Time Differentiation}
+\hfill \break \par $\quad$
+If $g(t) \xRightarrow{F} G(\omega)$
+\par \quad
+$\frac{dg(t)}{dt} \xRightarrow{F} j\omega G(\omega)$ \\ \\ 
+\textbf{Scaling}
+\hfill \break \par $\quad$ 
+If $g(t) \xRightarrow{F} G(\omega)$
+\par \quad
+$g(at) \xRightarrow{F} \frac{1}{\abs{a}}G(\frac{\omega}{a})$
+\\ \\
+Use these in a table to quickly transform a signal to either domain.
+\subsubsection{Selected Fourier Transform Pairs}
+\textbf{Impulse} 
+\hfill \break \par \quad
+$\delta(t) \xRightarrow{F} 1$ \\ \\ 
+\textbf{Constant}
+\hfill \break \par \quad
+$A \xRightarrow{F} 2\pi A\delta(\omega)$ \\ \\
+\textbf{Sinusoid}
+\hfill \break \par \quad
+$\text{cos}\omega_0t \xRightarrow{F} \pi \delta(\omega - \omega_0) + \pi\delta(\omega + \omega_0)$
+\par \quad
+$\text{sin}\omega_0t \xRightarrow{F} \frac{\pi}{j} \delta(\omega - \omega_0) + \frac{\pi}{j}\delta(\omega + \omega_0)$ \\ \\
+\textbf{Rectangle}
+\hfill \break \par \quad
+$\text{rect}(\frac{t}{\tau} \xRightarrow{F} \tau\text{sinc}(\frac{\omega\tau}{2}))$ \\ \\
+\textbf{Periodic}
+\hfill \break \par \quad
+$g(t) = \sum_{n=-\infty}^{\infty}D_ne^{jn\omega_0t} \xRightarrow{F} G(\omega) = 2\pi \sum_{n=-\infty}^{\infty} D_n\delta(\omega-n\omega_0)$
+
+\subsection{Signal Transmission Through Linear System}
+
+A system response (impulse $h(t)$ or frequency response $H(\omega)$) can be used as a filter where 
+
+$$g(t) \Rightarrow h(t) \Rightarrow y(t)$$
+
+$$y(t) = g(t) * h(t) = \int_{-\infty}^{\infty}g(\tau)h(t - \tau)d\tau$$
+
+$$Y(\omega) = G(\omega)H(\omega)$$
+
+$\abs{Y(\omega)} = \abs{G(\omega)} \cdot \abs{H(\omega)}$ \\
+$\theta_y(\omega) = \theta_g(\omega) + \theta_h(\omega)$
+
+\subsubsection{Filters}
+\textbf{Low Pass Filter (LPF)} blocks the frequency above its  cutoff frequency $f_c$ \hfill \break
+\par \quad 
+$H(f) = \begin{cases}
+    0, \quad \abs{f} > \abs{f_c} \\
+    1, \quad \abs{f} < \abs{f_c}
+\end{cases}$ \\ \\ \hfill \break
+\textbf{High Pass Filter (HPF)} blocks those below its  cutoff frequency $f_c$ \hfill \break
+\par \quad 
+$H(f) = \begin{cases}
+    1, \quad \abs{f} > \abs{f_c} \\
+    0, \quad \abs{f} < \abs{f_c}
+\end{cases}$ \\ \\ \hfill \break
+\textbf{Band Pass Filter (BPF)} is a combination with two cutoff frequencies \hfill \break
+\par \quad 
+$H(f) = \begin{cases}
+    1, \quad f_{c1} < \abs{f} < f_{c2} \\
+    0, \quad \text{else}
+\end{cases}$
+\subsubsection{Distortionless Transmission}
+A signal passing through a communication channel is said to be distortionless if can be scaled or delayed while maintaining its original shape. This implies a constant magnitude scale can be observed in its output, and a time shift can be separated from the original signal. \\ \\
+\textbf{Example:} $$\quad y(t) = kg(t - t_0$$
+$$Y(\omega) = kG(\omega)e^{-j\omega t_0}, \quad Y(\omega) = G(\omega)H(\omega)$$
+$$H(\omega) = ke^{-j\omega t_0}, \quad \abs{H(\omega)} = k, \quad \theta_h(\omega) = -\omega t_0$$
+\\
+From this the original $g(t)$ can be separated from the output signal and a constant scaling coefficient $\abs{H_k}$ and linear phase ($\theta_h(\omega)$) can be defined.
+\subsubsection{Energy Spectral Density (ESD)}
+From the original definition of $E_g$, the strength of an energy signal, we can incorporate Fourier Transform techniques to find another way:
+
+$$\int^{\infty}_{-\infty}\abs{g(t)}^2dt$$
+$$\int^{\infty}_{-\infty}g(t)g^*(t)dt$$
+$$\int^{\infty}_{-\infty}g(t)\frac{1}{2\pi}\int^{\infty}_{-\infty}G^*(\omega)e^{-j\omega t}dt$$
+$$\frac{1}{2\pi}\int^{\infty}_{-\infty}G^*(\omega)\int^{\infty}_{-\infty}(g(t)e^{-j\omega t}dt)d\omega$$
+$$\frac{1}{2\pi}\int^{\infty}_{-\infty}G^*(\omega)G(\omega)d\omega$$
+$$E_g = \frac{1}{2\pi}\int^{\infty}_{-\infty}\abs{G(\omega)}^2d\omega$$
+
+This inner value is the \textbf{Energy Spectral Density} (ESD) of a signal in the frequency domain. \\ 
+
+$$\Psi = \abs{G(\omega)}^2$$
+$$E_g = \frac{1}{2\pi}\int^{\infty}_{-\infty}\Psi_g(\omega)d\omega$$
+
+\subsubsection{Bandwidth}
+The bandwidth represents the range of frequency $\omega$ over which a signal has energy. The full range $C$ is halved $\frac{C}{2}$ because the energy found in the negative frequency range can be ignored. Therefore, once plotted, the bandwidth can be determined as: 
+
+$$B_{rad} = \frac{C}{2} = \frac{\omega_B - (-\omega_B)}{2} \quad \text{Radians}$$
+$$B_{Hz} = \frac{B_{rad}}{2} = \frac{\omega_B - (-\omega_B)}{2} \cdot \frac{1}{2\pi} = \frac{\omega_B}{2\pi}\quad \text{Hz}$$
+\hfill \break
+For multiple non continous signals, bandwidths can be summed.
+
+\subsubsection{Time Autocorrelation}
+
+$$\psi_g(\tau) \xRightarrow{F} \Psi_g(\omega) = \abs{G(\omega)^2}$$
+\hfill \break
+Autocorrelation is the time domain representation of the ESD.
+
+\subsubsection{ESD of a Linear System}
+For a linear system, the ESD of its output can be determined simply:
+
+$$Y(\omega) = H(\omega)G(\omega)$$
+$$\abs{Y(\omega)}^2 = \abs{H(\omega)}^2\abs{G(\omega)}^2$$
+$$\Psi_y(\omega) = \abs{Y(\omega)}^2 = \abs{H(\omega)}^2\abs{\Psi_g(\omega)}$$
+\\\
+The ESD of the output is equal to the ESD of the input time the magnitude of the frequency response squared.
+
+\subsubsection{Power Spectral Density (PSD)}
+\end{document}
