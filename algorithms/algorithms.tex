@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{bookmark}
+\usepackage{listings}
+\usepackage{color}
+\graphicspath{ {img/} }
+\setlength{\parindent}{0pt}
+\DeclareCaptionType{equ}[][]
+\usepackage[svgnames]{xcolor}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand*{\plogo}{\fbox{$\mathcal{BM}$}}
+
+\usepackage{PTSerif}
+
+\begin{document} 
+
+\begin{titlepage}
+
+\raggedleft
+
+\vspace*{\baselineskip}
+
+{\Large Bryan Melanson}
+
+\vspace*{0.167\textheight}
+
+\textbf{\LARGE How to Learn}\\[\baselineskip]
+
+{\textcolor{Red}{\Huge Algorithms}}\\[\baselineskip]
+
+{\Large \textit{When your brain doesn't work}}
+
+\vfill
+
+{\large 2021 ~~\plogo}
+
+\vspace*{3\baselineskip}
+
+\end{titlepage}
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Search}
+
+
+
+\subsection{Binary Search}
+
+\begin{itemize}
+\item Let \texttt{min = 0} and \texttt{max = n-1}.
+\item Compute guess as the average of \texttt{max} and \texttt{min}, rounded down (so that it is an integer).
+\item If \texttt{array[guess]} equals \texttt{target}, then stop. You found it! Return \texttt{guess}.
+\item If the guess was too low, that is, \texttt{array[guess] < target}, then set \texttt{min = guess + 1}.
+\item Otherwise, the guess was too high. Set \texttt{max = guess - 1}.
+\item Go back to step 2.
+\end{itemize}
+
+\begin{lstlisting}
+// binarysearch.c
+int binarySearch(int target){
+    int lo = 0; int hi = arrSize;
+    while (lo <= hi) {
+        int mid = lo + (hi-lo)/2;
+        m = getElement(mid);
+        if (m == target) return mid;
+        if (m > target) hi = mid - 1;
+        else lo = mid + 1;
+    }
+}
+    \end{lstlisting}
+\end{document}
