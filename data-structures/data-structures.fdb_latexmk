@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1624555935 "/home/bryan/Git/study-guides/data-structures/data-structures.tex" "/home/bryan/Git/study-guides/data-structures/data-structures.pdf" "data-structures" 1624555936
+["pdflatex"] 1624904346 "/home/bryan/Git/study-guides/data-structures/data-structures.tex" "/home/bryan/Git/study-guides/data-structures/data-structures.pdf" "data-structures" 1624904366
   "/etc/texmf/web2c/texmf.cnf" 1611158493 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bryan/Git/study-guides/data-structures/data-structures.aux" 1624555935 8392 e60b827b4e370f6aa3e5d56255bce70e ""
-  "/home/bryan/Git/study-guides/data-structures/data-structures.tex" 1624555934 10239 eb9039a0f7b0de4ebc43eb23982861a8 ""
+  "/home/bryan/Git/study-guides/data-structures/data-structures.aux" 1624904347 9045 fe363fcdb97bb0425f30710d7429f918 ""
+  "/home/bryan/Git/study-guides/data-structures/data-structures.tex" 1624904366 13032 53f1556e6904ee805328aa75b4ada5b1 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/paratype/ptserif_ot1.enc" 1391470736 2506 22f0da0720b7fcb1de5baefa1cc19181 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/paratype/ptserif/PTSerif-Bold-tlf-ot1.tfm" 1369177455 6260 261aa1134ca15131a8bfd0d17a3ebaf2 ""
@@ -104,9 +104,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1596975543 38841 5237427e4d3283e7b009b6a8b45dfdcd ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1615512490 4873311 71a69169e8f25b40365ee00977a83dfd ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1615512539 2442263 d425db17e25f5f566da9949a9b67f267 ""
-  "data-structures.aux" 1624555935 8392 e60b827b4e370f6aa3e5d56255bce70e "pdflatex"
-  "data-structures.tex" 1624555934 10239 eb9039a0f7b0de4ebc43eb23982861a8 ""
-  "data-structures.toc" 1624555935 2787 c33252a137bf1173bbd0432d36f07c69 "pdflatex"
+  "data-structures.aux" 1624904347 9045 fe363fcdb97bb0425f30710d7429f918 "pdflatex"
+  "data-structures.tex" 1624904366 13032 53f1556e6904ee805328aa75b4ada5b1 ""
+  "data-structures.toc" 1624904347 3027 1618d9334d84227e0bc4e75b3084a554 "pdflatex"
   "img/array.png" 1623857372 5248 eb55aefee744efc849a9f506d31a1ed3 ""
   "img/binarysearchtree.jpg" 1623858590 254012 3e939a19cabb628076229206a8ccc0a5 ""
   "img/binarytree.png" 1623858552 55849 e0d0fa4c02035c7e5378875ac11ce866 ""
@@ -120,9 +120,9 @@
   "img/queue.png" 1623858682 27848 be1018107be702442ffffd5b1669df7f ""
   "img/stack.png" 1623858656 16881 390ea264850220111e4ed94dfad7c8e1 ""
   (generated)
-  "data-structures.aux"
-  "/home/bryan/Git/study-guides/data-structures/data-structures.log"
-  "data-structures.log"
-  "data-structures.pdf"
   "data-structures.toc"
   "/home/bryan/Git/study-guides/data-structures/data-structures.pdf"
+  "data-structures.pdf"
+  "/home/bryan/Git/study-guides/data-structures/data-structures.log"
+  "data-structures.log"
+  "data-structures.aux"

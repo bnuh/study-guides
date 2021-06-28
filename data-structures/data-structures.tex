@@ -80,6 +80,7 @@
     \item Exclusive Or \texttt{\textasciicircum}
 \end{list}
 \subsection{Common Operations}
+In each of the following cases, it should be noted that each byte in hex format is two digits (\texttt{0x00}). Therefore, moving a hex value by one byte is equivalent to shifting it 8 bits, or \texttt{0x00FF << 8 = 0xFF00}, and moving the hex value one space is half a byte, or 4 bits (a \textbf{nibble}). 
 \subsubsection{Set Bit}
 To set the $n$th bit in value $x$, shift $1$ (\texttt{0x000000001}) by $n$ bits and \texttt{AND} them.
 $$\texttt{x \& (1 << n)}$$
@@ -215,6 +216,9 @@ Each node in the linked list consists of its data, and a pointer to the next obj
     \includegraphics[width=250 px]{img/binarysearchtree}  \\
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{B-Tree}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Stack}
 \begin{center}
     \includegraphics[width=250 px]{img/stack}  \\
@@ -318,10 +322,75 @@ int pop()
     \includegraphics[width=200 px]{img/heap}  \\
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hash Tables}
+\section{Hash Maps}
 \begin{center}
     \includegraphics[width=300 px]{img/hash}  \\
 \end{center}
+
+A hash map combines features of a static array and a linked list, without being bound by issues such as inserting new values in a size-defined array, or searching for values in a linked list. A hash map has a preallocated buffer, and uses the value of the data to be inserted to generate a key, or index by hashing it. If a hash is properly defined, there will be no hash collisions, and data with an indentical value will be stored in the identical spot in the hash map. This way, a value need only be calculated once, then stored in the hash map. Insted of generating the value again by calculation, the value can be retrieved from the hash map by visiting the pre-determined index.
+
+\subsection{Code}
+\begin{lstlisting}
+int hash(int key) {
+    int r = key % SIZE;
+    return r < 0 ? r + SIZE : r;
+}
+
+void insert(int *values, int key, int value) {
+    int index = hash(key);
+    while (values[index]) {
+        index++;
+        index %= SIZE;
+    }
+    keys[index] = key;
+    values[index]= value;
+}
+
+int search(int *keys, int *values, int key) {
+    int index = hash(key);
+    while (values[index]) {
+        if (keys[index] == key) {
+            return values[index];
+        }
+        index++;
+        index %= SIZE;
+    }
+    return 0;
+}
+
+/* The requested value is checked for, in each step of the loop then the hash map is populated with the value if it doesn't already exist. This means the check will take O(n) */
+
+int* main(int* nums, int numsSize, int target) {
+    int keys[SIZE];
+    int values[SIZE] = {0};
+    for (int i = 0; i < numsSize; i++) {
+        int complements = target - nums[i];
+        int value = search(keys, values, complements);
+        if (value) {
+            int *indices = (int *) malloc(sizeof(int) * 2);
+            indices[0] = value - 1;
+            indices[1] = i;
+            return indices;
+        }
+        insert(keys, values, nums[i], i + 1);
+    }
+    return NULL;
+}
+\end{lstlisting}
+
+\subsection{Simple Hash Function for Strings}
+\begin{lstlisting}
+    int hash_function(char* key) {
+        int hash = toupper(key[0]) - 'A'; 
+        /* Subtracting 'A' sets the index of alpha characters starting with 0 for 'A'. 'A' is 0, 'B' is 1, etc. */
+        return hash % SIZE; // Constrain to the array size
+    }
+\end{lstlisting}
+
+If a collision occurs, linked lists can point to values with this same index.
+
+A good hash value would distribute values evenly across the map.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Graph}
 \begin{center}
