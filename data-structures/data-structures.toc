@@ -26,14 +26,27 @@
 \contentsline {subsection}{\numberline {6.1}Inserting}{8}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Deleting}{8}{subsection.6.2}%
 \contentsline {section}{\numberline {7}Binary Tree}{8}{section.7}%
-\contentsline {section}{\numberline {8}Binary Search Tree}{8}{section.8}%
-\contentsline {section}{\numberline {9}B-Tree}{9}{section.9}%
-\contentsline {section}{\numberline {10}Stack}{9}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Stack Array}{9}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Dynamic Stack Using Linked List}{10}{subsection.10.2}%
-\contentsline {section}{\numberline {11}Queue}{11}{section.11}%
-\contentsline {section}{\numberline {12}Heap}{12}{section.12}%
-\contentsline {section}{\numberline {13}Hash Maps}{12}{section.13}%
-\contentsline {subsection}{\numberline {13.1}Code}{12}{subsection.13.1}%
-\contentsline {subsection}{\numberline {13.2}Simple Hash Function for Strings}{14}{subsection.13.2}%
-\contentsline {section}{\numberline {14}Graph}{14}{section.14}%
+\contentsline {subsection}{\numberline {7.1}Depth First Traversal}{8}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Pre-Order Traversal}{8}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}In-Order Traversal}{9}{subsubsection.7.1.2}%
+\contentsline {subsubsection}{\numberline {7.1.3}Post-Order Traversal}{9}{subsubsection.7.1.3}%
+\contentsline {subsection}{\numberline {7.2}Breadth First Traversal}{9}{subsection.7.2}%
+\contentsline {section}{\numberline {8}AVL Tree}{10}{section.8}%
+\contentsline {section}{\numberline {9}Red-Black Tree}{10}{section.9}%
+\contentsline {section}{\numberline {10}N-Ary Tree}{10}{section.10}%
+\contentsline {section}{\numberline {11}Binary Search Tree}{10}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Searching}{10}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Inserting}{11}{subsection.11.2}%
+\contentsline {section}{\numberline {12}B-Tree}{12}{section.12}%
+\contentsline {section}{\numberline {13}Stack}{12}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Stack Array}{12}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Dynamic Stack Using Linked List}{13}{subsection.13.2}%
+\contentsline {section}{\numberline {14}Queue}{14}{section.14}%
+\contentsline {section}{\numberline {15}Heap}{15}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Maximimum Heap}{15}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Minimum Heap}{15}{subsection.15.2}%
+\contentsline {section}{\numberline {16}Hashes}{15}{section.16}%
+\contentsline {subsection}{\numberline {16.1}Code}{16}{subsection.16.1}%
+\contentsline {subsection}{\numberline {16.2}Hash Functions}{17}{subsection.16.2}%
+\contentsline {subsubsection}{\numberline {16.2.1}Simple Hash Function for Strings}{17}{subsubsection.16.2.1}%
+\contentsline {section}{\numberline {17}Graph}{17}{section.17}%

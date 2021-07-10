@@ -210,11 +210,122 @@ Each node in the linked list consists of its data, and a pointer to the next obj
 \begin{center}
     \includegraphics[width=250 px]{img/binarytree}  \\
 \end{center}
+
+A Binary Tree is any tree organized in which each node, or \textbf{root} has at most two children, or \textbf{leaves}, hence \textit{binary}, designated left and right. 
+
+\subsection{Depth First Traversal}
+
+\textbf{Depth First Traversal} traverses the tree to its extents before backtracking and completing the traversal. It will explore until it reaches nodes with no children before moving to the nearest neighbor. The order of traversal can be categorized into \textbf{Pre-Order}, \textbf{In-Order} and \textbf{Post-Order} which determine which order the nodes (\textit{Left},\textit{right},\textit{center}) are visited.
+
+\subsubsection{Pre-Order Traversal}
+\begin{lstlisting}
+void pre_order(struct Node* n) {
+    // print n->value
+
+    if (n->left)
+        pre_order(n->left);
+
+    if (n->right)
+        pre_order(n->right);
+}
+\end{lstlisting}
+\subsubsection{In-Order Traversal}
+\begin{lstlisting}
+void in_order(struct Node* n) {
+    if (n->left)
+        pre_order(n->left);
+
+    // print n->value
+
+    if (n->right)
+        pre_order(n->right);
+}
+\end{lstlisting}
+\subsubsection{Post-Order Traversal}
+\begin{lstlisting}
+void post_order(struct Node* n) {
+    if (n->left)
+        pre_order(n->left);
+
+    if (n->right)
+        pre_order(n->right);
+
+    // print n->value
+}
+\end{lstlisting}
+\subsection{Breadth First Traversal}
+
+Breadth first traversal traverses a tree by visiting all nodes at a given height, before descending the depth of the tree.
+
+\begin{lstlisting}
+def bfs(self):
+    queue = Queue()
+    queue.put(self)
+
+    while not queue.empty():
+        current_node = queue.get()
+        print(current_node.value)
+
+        if current_node.left_child:
+            queue.put(current_node.left_child)
+
+        if current_node.right_child:
+            queue.put(current_node.right_child)
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{AVL Tree}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Red-Black Tree}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{N-Ary Tree}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Binary Search Tree}
 \begin{center}
     \includegraphics[width=250 px]{img/binarysearchtree}  \\
 \end{center}
+
+A Binary Search Tree is one in which the value of the node stored on the left is less than the value of root, and the value of the node on the right is greater than the value of the root. By organizing a tree in this way, values can easily be found using a similar method as binary search which eliminates half of the remaining possibilities at each step.
+
+\subsection{Searching}
+
+\begin{lstlisting}
+bool contains(Node* curr, int value) {
+    if (curr->data == value) { return true; }
+    else if (value < curr->value) {
+        if (curr->left) {
+            return contains(curr->left, value);
+        }
+    } else {
+        if (curr->right) {
+            return contains(curr->right, value);
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Inserting}
+
+To maintain the structure rules of the Binary Search Tree after insertion, the leaves of each node must be evaluated and the next route determined until a non-null spot that meets the criteria is determined. If the the current value of the node is greater than the value to be inserted, it will attempt to insert on the left if the left is currently null. If the left is not null, it will recursively evaluate the left node in the same way.
+
+\begin{lstlisting}
+void insert(Node* new, Node* curr, int value) {
+    if (value <= curr->value) {
+        if (curr->left == NULL) {
+            curr->left = new;
+        } else {
+            insert(curr->left, value);
+        }
+    } else {
+        if (curr->right == NULL) {
+            curr->right = new;
+        } else {
+            insert(curr->right, value);
+        }
+    }
+}
+\end{lstlisting}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{B-Tree}
 
@@ -233,7 +344,7 @@ A struct can be created which tracks the index of the top, and holds the allocat
 * Stack implementation using array in C
 */
 
-#defined CAPACITY 100
+#define CAPACITY 100
 
 typedef struct stack {
     int top;
@@ -321,13 +432,18 @@ int pop()
 \begin{center}
     \includegraphics[width=200 px]{img/heap}  \\
 \end{center}
+\subsection{Maximimum Heap}
+\subsection{Minimum Heap}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hash Maps}
+\section{Hashes}
 \begin{center}
     \includegraphics[width=300 px]{img/hash}  \\
 \end{center}
 
 A hash map combines features of a static array and a linked list, without being bound by issues such as inserting new values in a size-defined array, or searching for values in a linked list. A hash map has a preallocated buffer, and uses the value of the data to be inserted to generate a key, or index by hashing it. If a hash is properly defined, there will be no hash collisions, and data with an indentical value will be stored in the identical spot in the hash map. This way, a value need only be calculated once, then stored in the hash map. Insted of generating the value again by calculation, the value can be retrieved from the hash map by visiting the pre-determined index.
+\\
+\\
+The \textbf{Hash Set} is a hash map which stores no repeated values.
 
 \subsection{Code}
 \begin{lstlisting}
@@ -378,7 +494,13 @@ int* main(int* nums, int numsSize, int target) {
 }
 \end{lstlisting}
 
-\subsection{Simple Hash Function for Strings}
+\subsection{Hash Functions}
+
+\begin{table}
+    
+\end{table}
+
+\subsubsection{Simple Hash Function for Strings}
 \begin{lstlisting}
     int hash_function(char* key) {
         int hash = toupper(key[0]) - 'A'; 
